@@ -1,9 +1,10 @@
 module.exports.calculateCommissions = function () {
   const fs = require('fs');
-
+ 
   const urlArgument = process.argv[2];
   const isDebugArgument = process.argv[3];
 
+  
   const input = JSON.parse(fs.readFileSync(urlArgument, { encoding: 'utf8' }));
   const cashInConfig = JSON.parse(fs.readFileSync('./config/cash_in.json', { encoding: 'utf8' }));
   const cashOutJuridicalConfig = JSON.parse(fs.readFileSync('./config/cash_out_juridical.json', { encoding: 'utf8' }));
@@ -201,21 +202,11 @@ module.exports.calculateCommissions = function () {
   }
 
 
+  checkJson();
+  input.forEach(calcCommission);
 
-  if (urlArgument === undefined) {
-    console.log('')
-    console.log('Function accepts following parameters:');
-    console.log('processData(<URL>, debug)')
-    console.log('<URL>    - specify .json to initiate commision calculations');
-    console.log('debug    - (optional) execute in debug mode')
-    return;
-  } else {
-    checkJson();
-    input.forEach(calcCommission);
-
-    if (isDebugArgument === 'debug') {
-      debug();
-    }
+  if (isDebugArgument === 'debug') {
+    debug();
   }
-};
+}
 this.calculateCommissions();

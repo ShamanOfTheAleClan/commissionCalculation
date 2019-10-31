@@ -1,0 +1,101 @@
+-------------------------------
+,User: 1
+,Operation type: cash_in
+,User type: natural
+,Operation amount: 200
+,Calculated fee: 5.00
+,-------------------------------
+,User: 2
+,Operation type: cash_out
+,User type: juridical
+,Operation amount: 300
+,Calculated fee: 90.00
+,-------------------------------
+,User: 1
+,Operation type: cash_out
+,User type: natural
+,Week: 1
+,Current amount:  30000  Limit: 1000
+,First operation this week: true
+,Cashed out this week: 0
+,Operation amount: 30000
+,Taxable amount: 0
+,Calculated fee: 0.00
+,-------------------------------
+,User: 1
+,Operation type: cash_out
+,User type: natural
+,Week: 1
+,Current amount:  1000  Limit: 1000
+,First operation this week: false
+,Cashed out this week: 30000
+,Operation amount: 1000
+,Taxable amount: 1000
+,Calculated fee: 300.00
+,-------------------------------
+,User: 1
+,Operation type: cash_out
+,User type: natural
+,Week: 1
+,Current amount:  100  Limit: 1000
+,First operation this week: false
+,Cashed out this week: 31000
+,Operation amount: 100
+,Taxable amount: 100
+,Calculated fee: 30.00
+,-------------------------------
+,User: 1
+,Operation type: cash_out
+,User type: natural
+,Week: 2
+,Current amount:  100  Limit: 1000
+,First operation this week: true
+,Cashed out this week: 0
+,Operation amount: 100
+,Taxable amount: 0
+,Calculated fee: 0.00
+,-------------------------------
+,User: 2
+,Operation type: cash_in
+,User type: juridical
+,Operation amount: 1000000
+,Calculated fee: 5.00
+,-------------------------------
+,User: 3
+,Operation type: cash_out
+,User type: natural
+,Week: 2
+,Current amount:  1000  Limit: 1000
+,First operation this week: true
+,Cashed out this week: 0
+,Operation amount: 1000
+,Taxable amount: 0
+,Calculated fee: 0.00
+,-------------------------------
+,User: 1
+,Operation type: cash_out
+,User type: natural
+,Week: 7
+,Current amount:  300  Limit: 1000
+,First operation this week: true
+,Cashed out this week: 0
+,Operation amount: 300
+,Taxable amount: 0
+,Calculated fee: 0.00
+,-------------------------------
+,User: 1
+,Operation type: cash_out
+,User type: natural
+,Week: 7
+,Current amount:  45.46  Limit: 1000
+,First operation this week: false
+,Cashed out this week: 300
+,Operation amount: 45.46
+,Taxable amount: 0
+,Calculated fee: 0.00
+,-------------------------------
+,User: 2
+,Operation type: cash_in
+,User type: natural
+,Operation amount: 15.38
+,Calculated fee: 0.47
