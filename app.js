@@ -1,4 +1,4 @@
-module.exports.processData = function () {
+module.exports.calculateCommissions = function () {
   const fs = require('fs');
 
   const urlArgument = process.argv[2];
@@ -218,4 +218,4 @@ module.exports.processData = function () {
     }
   }
 };
-this.processData();
+this.calculateCommissions();
