@@ -44,7 +44,7 @@ module.exports.processData = function () {
   const toDebugLog = function addLineToDebugLog(e) {
     Array.prototype.push.call(debugLog, e);
   }
-  
+
   const debug = function initiateDebugMode() {
 
     console.log('-------------------------------------------')
@@ -72,7 +72,7 @@ module.exports.processData = function () {
   }
 
 
-
+  // Called in cashOutNatural()
   const checkOverdraft = function checkIfLimitIsExeededAndCalculateFee(user, cashOutAmount) {
     let taxableAmount;
     const limit = cashOutNaturalConfig.week_limit.amount;
@@ -97,7 +97,7 @@ module.exports.processData = function () {
   }
 
 
-
+  // Called in calcCommission()
   const cashIn = function calculateCashInFee(inputOperation) {
 
     const percents = cashInConfig.percents;
@@ -113,7 +113,7 @@ module.exports.processData = function () {
   }
 
 
-
+  // Called in calcCommission()
   const cashOutNatural = function calculateCashOutFeeForNaturalPerson(inputOperation) {
 
     const limit = cashOutNaturalConfig.week_limit.amount;
@@ -155,7 +155,7 @@ module.exports.processData = function () {
   }
 
 
-
+  // Called in calcCommission()
   const cashOutLegal = function calculateCashOutFeeForJuridicalPerson(inputOperation) {
 
     const percents = cashOutJuridicalConfig.percents;
@@ -205,9 +205,9 @@ module.exports.processData = function () {
   if (urlArgument === undefined) {
     console.log('')
     console.log('Function accepts following parameters:');
-    console.log('processData(<URL>, debug')
+    console.log('processData(<URL>, debug)')
     console.log('<URL>    - specify .json to initiate commision calculations');
-    console.log('debug    - execute in debug mode')
+    console.log('debug    - (optional) execute in debug mode')
     return;
   } else {
     checkJson();
