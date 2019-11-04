@@ -86,7 +86,7 @@ module.exports.calculateCommissions = function () {
     const limit = cashOutNaturalConfig.week_limit.amount;
     const percents = cashOutNaturalConfig.percents;
 
-    if (user.amount > limit) {
+    if (user.amount + cashOutAmount > limit) {
       taxableAmount =
         cashOutAmount < (user.amount + cashOutAmount - limit) ?
           cashOutAmount :
@@ -99,7 +99,7 @@ module.exports.calculateCommissions = function () {
     toDebugLog(`Operation amount: ${cashOutAmount}`);
     toDebugLog(`Taxable amount: ${taxableAmount}`);
 
-    let feeCalculated = Math.ceil(taxableAmount * 100 * percents) / 100;
+    let feeCalculated = Math.ceil(taxableAmount * 100 * percents) / 10000;
     feeCalculated = Number.prototype.toFixed.call(feeCalculated, 2);
     return feeCalculated;
   }
@@ -111,7 +111,7 @@ module.exports.calculateCommissions = function () {
     const percents = cashInConfig.percents;
     const maxAmount = cashInConfig.max.amount;
 
-    let feeCalculated = Math.ceil(inputOperation.operation.amount * 100 * percents) / 100;
+    let feeCalculated = Math.ceil(inputOperation.operation.amount * 100 * percents) / 10000;
     feeCalculated = feeCalculated > maxAmount ? 5.00 : feeCalculated;
     feeCalculated = Number.prototype.toFixed.call(feeCalculated, 2);
     console.log(feeCalculated);
@@ -131,7 +131,7 @@ module.exports.calculateCommissions = function () {
     const userExists = !!weeks[week + 1].users.filter(user => (user.id === userId)).length;
     
     toDebugLog(`Week: ${week}`);
-    toDebugLog(`Current amount:  ${inputOperation.operation.amount}  Limit: ${limit}`);
+    toDebugLog(`Limit: ${limit}`);
     toDebugLog(`First operation this week: ${!userExists}`);
     // if has already cashed out this week
     if (userExists) {
@@ -169,7 +169,7 @@ module.exports.calculateCommissions = function () {
     const percents = cashOutJuridicalConfig.percents;
     const minAmount = cashOutJuridicalConfig.min.amount;
 
-    let feeCalculated = Math.ceil(inputOperation.operation.amount * 100 * percents) / 100;
+    let feeCalculated = Math.ceil(inputOperation.operation.amount * 100 * percents) / 10000;
     feeCalculated = feeCalculated < minAmount ? 0.50 : feeCalculated;
     feeCalculated = Number.prototype.toFixed.call(feeCalculated, 2);
     console.log(feeCalculated);
