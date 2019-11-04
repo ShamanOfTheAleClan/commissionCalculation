@@ -1,6 +1,7 @@
 module.exports.calculateCommissions = function () {
   const fs = require('fs');
  
+  // Currently designed to get parameters from terminal using node
   const urlArgument = process.argv[2];
   const isDebugArgument = process.argv[3];
 
@@ -28,24 +29,29 @@ module.exports.calculateCommissions = function () {
 
   // this creates array with 54 weeks, in which every natural user's cash out operation is stored
   // to check if cash out limit is reached.
+  // Called in cachOutNatural()
   let weeks = [];
   for (let i = 0; i < 54; i++) {
     weeks.push(new Week(i + 1));
   }
 
 
-
+  // Called in cashOutNatural()
   const getWeek = function getWeekNumber(inputDate) {
     const date = new Date(inputDate.getFullYear(), 0, 1);
     return Math.ceil((((inputDate - date) / 86400000) + date.getDay() + 1) / 7) - 1;
   };
 
-
+  // Treat toDebugLog calls as if they were console.log()
   let debugLog = [];
   const toDebugLog = function addLineToDebugLog(e) {
     Array.prototype.push.call(debugLog, e);
   }
 
+  // Debug mode gathers all "would-be" console.log lines
+  // and puts them in array.
+  // Then console.logs that array into terminal
+  // and saves copy into .txt file
   const debug = function initiateDebugMode() {
 
     console.log('-------------------------------------------')
@@ -74,6 +80,7 @@ module.exports.calculateCommissions = function () {
 
 
   // Called in cashOutNatural()
+  // To check if cash out limit is reached
   const checkOverdraft = function checkIfLimitIsExeededAndCalculateFee(user, cashOutAmount) {
     let taxableAmount;
     const limit = cashOutNaturalConfig.week_limit.amount;
