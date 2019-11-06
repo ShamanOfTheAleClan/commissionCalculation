@@ -9,9 +9,6 @@ const calculate = function calculateCashInFee(inputOperation) {
     feeCalculated = feeCalculated > maxAmount ? maxAmount : feeCalculated;
     feeCalculated = Number.prototype.toFixed.call(feeCalculated, 2);
     console.log(feeCalculated);
-
-    // toDebugLog(`Operation amount: ${inputOperation.operation.amount}`)
-    // toDebugLog(`Calculated fee: ${feeCalculated}`);
 }
 
 exports.calculate = calculate;

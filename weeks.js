@@ -1,4 +1,3 @@
-
 // User class for week array
 class User {
     constructor(userId, operationAmount) {
@@ -6,7 +5,6 @@ class User {
         this.amount = operationAmount;
     }
 }
-
 
 // Week class for week array
 class Week {
@@ -18,14 +16,10 @@ class Week {
 
 // this creates array with 54 weeks, in which every natural user's cash out operation is stored
 // to check if cash out limit is reached.
-// Called in cachOutNatural()
 let weeksArray = [];
 for (let i = 0; i < 54; i++) {
     weeksArray.push(new Week(i + 1));
 }
-
-
-// Called in cashOutNatural()
 
 const getWeek = function getWeekNumber(inputDate) {
     const date = new Date(inputDate.getFullYear(), 0, 1);

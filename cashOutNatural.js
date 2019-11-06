@@ -11,9 +11,6 @@ const calculate = function calculateCashOutFeeForNaturalPerson(inputOperation) {
     const userId = inputOperation.user_id;
     const userExists = !!weeks.weeksArray[week + 1].users.filter(user => (user.id === userId)).length;
 
-    // toDebugLog(`Week: ${week}`);
-    // toDebugLog(`Limit: ${limit}`);
-    // toDebugLog(`First operation this week: ${!userExists}`);
     // if has already cashed out this week
     if (userExists) {
         // - find that user 
@@ -25,7 +22,6 @@ const calculate = function calculateCashOutFeeForNaturalPerson(inputOperation) {
         thisUser.amount += amount;
         console.log(feeCalculated);
 
-        // toDebugLog(`Calculated fee: ${feeCalculated}`);
 
     } else {
         // add new user with given id to this week
@@ -38,8 +34,6 @@ const calculate = function calculateCashOutFeeForNaturalPerson(inputOperation) {
         const feeCalculated = overdraftCheck.check(thisUser, amount);
         thisUser.amount += amount;
         console.log(feeCalculated);
-
-        // toDebugLog(`Calculated fee: ${feeCalculated}`);
     }
 }
 exports.calculate = calculate;

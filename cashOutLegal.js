@@ -9,10 +9,6 @@ const calculate = function calculateCashOutFeeForJuridicalPerson(inputOperation)
     feeCalculated = feeCalculated < minAmount ? minAmount : feeCalculated;
     feeCalculated = Number.prototype.toFixed.call(feeCalculated, 2);
     console.log(feeCalculated);
+}
 
-    // toDebugLog(`Operation amount: ${inputOperation.operation.amount}`);
-    // toDebugLog(`Calculated fee: ${feeCalculated}`);
-
-  }
-
-  exports.calculate = calculate;
+exports.calculate = calculate;

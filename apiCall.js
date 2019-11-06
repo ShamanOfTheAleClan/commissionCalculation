@@ -1,6 +1,5 @@
 const fs = require('fs');
 
-// delete these two later
 const urlArgument = process.argv[2];
 
 const input = JSON.parse(fs.readFileSync(urlArgument, { encoding: 'utf8' }));
