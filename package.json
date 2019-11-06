@@ -1,0 +1,23 @@
+{
+  "name": "commissioncalculation",
+  "description": "Documentation\r =============",
+  "version": "1.0.0",
+  "main": "app.js",
+  "dependencies": {
+    "jest": "^24.9.0"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "jest"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ShamanOfTheAleClan/commissionCalculation.git"
+  },
+  "author": "ShamanOfTheAleClan",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ShamanOfTheAleClan/commissionCalculation/issues"
+  },
+  "homepage": "https://github.com/ShamanOfTheAleClan/commissionCalculation#readme"
+}
