@@ -1,5 +1,12 @@
 const cashIn = require('./cashIn');
 
-test.skip('From 200.00 calcualtes 0.06', () => {
-    expect(cashIn.calculate({operation:'200.00'})).toBe(0.06);
+const inputOperation1 = {
+    operation: {
+        amount: 200.00,
+        currency: 'EUR',
+    }
+}
+
+test('Calculates cash in fee', () => {
+    expect(cashIn.calculate(inputOperation1)).toBe(0.06);
 });

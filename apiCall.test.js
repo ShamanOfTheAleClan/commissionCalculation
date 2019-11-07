@@ -1,11 +1,13 @@
 const apiCall = require('./apiCall');
 
-beforeAll(() => {
-    return urlArgument = './input.json'
-})
-
 test('can find input file', () => {
-    return apiCall.input(urlArgument, {}, results => {
-        expect(results.length).toBeGreaterThan(0);
-    });
+    // console.log(apiCall.input());
+    expect(apiCall.input('input.json').length).toBeGreaterThan(0);
+    
+});
+
+test('does not find non-existant file', () => {
+    expect(() => {
+        apiCall.input('john.json')
+    }).toThrow();
 });

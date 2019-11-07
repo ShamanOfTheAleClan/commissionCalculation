@@ -20,7 +20,8 @@ const calculate = function calculateCashOutFeeForNaturalPerson(inputOperation) {
 
         const feeCalculated = overdraftCheck.check(thisUser, amount);
         thisUser.amount += amount;
-        console.log(feeCalculated);
+        // console.log(feeCalculated);
+        return feeCalculated;
 
 
     } else {
@@ -33,7 +34,8 @@ const calculate = function calculateCashOutFeeForNaturalPerson(inputOperation) {
 
         const feeCalculated = overdraftCheck.check(thisUser, amount);
         thisUser.amount += amount;
-        console.log(feeCalculated);
+        // console.log(feeCalculated);
+        return feeCalculated;
     }
 }
 exports.calculate = calculate;
