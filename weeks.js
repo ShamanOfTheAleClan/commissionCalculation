@@ -22,8 +22,9 @@ for (let i = 0; i < 54; i++) {
 }
 
 const getWeek = function getWeekNumber(inputDate) {
-    const date = new Date(inputDate.getFullYear(), 0, 1);
-    return Math.ceil((((inputDate - date) / 86400000) + date.getDay() + 1) / 7) - 1;
+    const date = new Date(new Date(inputDate).getFullYear(), 0, 1);
+	const weekDay = (date.getDay());
+    return Math.ceil((((new Date(inputDate) - date) / 86400000) + date.getDay()-6 + weekDay) / 7);
 };
 
 exports.User = User;

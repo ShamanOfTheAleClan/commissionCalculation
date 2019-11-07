@@ -6,7 +6,7 @@ const User = weeks.User;
 const calculate = function calculateCashOutFeeForNaturalPerson(inputOperation) {
 
     const limit = apiCall.cashOutNaturalConfig.week_limit.amount;
-    const week = weeks.getWeek(new Date(inputOperation.date));
+    const week = weeks.getWeek(inputOperation.date);
     const amount = inputOperation.operation.amount;
     const userId = inputOperation.user_id;
     const userExists = !!weeks.weeksArray[week + 1].users.filter(user => (user.id === userId)).length;
