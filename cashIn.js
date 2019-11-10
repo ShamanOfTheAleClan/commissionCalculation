@@ -18,7 +18,7 @@ const calculate = function calculateCashInFee(inputOperation) {
         // console.log(feeCalculated);
         return feeCalculated;
     } else {
-        throw `User ${inputOperation.user_id} used ${inputOperation.operation.currency} instead of EUR. Calculation canceled`
+        throw (`User ${inputOperation.user_id} used ${inputOperation.operation.currency} instead of EUR. Calculation canceled`);
     }
 
 }

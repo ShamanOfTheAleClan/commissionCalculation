@@ -3,10 +3,10 @@
   "description": "Documentation\r =============",
   "version": "1.0.0",
   "main": "app.js",
-  "dependencies": {
+  "dependencies": {},
+  "devDependencies": {
     "jest": "^24.9.0"
   },
-  "devDependencies": {},
   "scripts": {
     "test": "jest"
   },
