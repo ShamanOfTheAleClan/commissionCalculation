@@ -1,11 +1,10 @@
-const apiCall = require('./apiCall');
 const overdraftCheck = require('./overdraftCheck');
 const weeks = require('./weeks');
 const User = weeks.User;
+const configs = require('./configurations');
 
 const calculate = function calculateCashOutFeeForNaturalPerson(inputOperation) {
 
-    const limit = apiCall.cashOutNaturalConfig.week_limit.amount;
     const week = weeks.getWeek(inputOperation.date);
     const amount = inputOperation.operation.amount;
     const userId = inputOperation.user_id;
@@ -20,7 +19,6 @@ const calculate = function calculateCashOutFeeForNaturalPerson(inputOperation) {
 
         const feeCalculated = overdraftCheck.check(thisUser, amount);
         thisUser.amount += amount;
-        // console.log(feeCalculated);
         return feeCalculated;
 
 
@@ -34,7 +32,6 @@ const calculate = function calculateCashOutFeeForNaturalPerson(inputOperation) {
 
         const feeCalculated = overdraftCheck.check(thisUser, amount);
         thisUser.amount += amount;
-        // console.log(feeCalculated);
         return feeCalculated;
     }
 }

@@ -1,9 +1,9 @@
-const apiCall = require('./apiCall');
+const configs = require('./configurations');
 
 const check = function checkIfLimitIsExeededAndCalculateFee(user, cashOutAmount) {
     let taxableAmount;
-    const limit = apiCall.cashOutNaturalConfig.week_limit.amount;
-    const percents = apiCall.cashOutNaturalConfig.percents;
+    const limit = configs.cashOutNaturalConfig.read.week_limit.amount;
+    const percents = configs.cashOutNaturalConfig.read.percents;
 
     if (user.amount + cashOutAmount > limit) {
         taxableAmount =

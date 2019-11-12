@@ -1,5 +1,7 @@
 const cashIn = require('./cashIn');
 
+// visus kitus modulius ir fukcijas reik mockint;
+
 const inputOperation1 = {
     operation: {
         amount: 200.00,

@@ -1,5 +1,6 @@
 const fs = require('fs');
 const http = require('http');
+const configurations = require('./configurations');
 
 let cashInConfig;
 let cashOutJuridicalConfig;
@@ -10,39 +11,31 @@ const cashOutJuridicalApiUrl = 'http://private-38e18c-uzduotis.apiary-mock.com/c
 const cashOutNaturalApiUrl = 'http://private-38e18c-uzduotis.apiary-mock.com/config/cash-out/natural';
 
 
-// const getApi = async () => {
-// let response = await fetch(cashInApiUrl);
-// cashInConfig = await JSON.parse(response);
-// }
-
-// getApi();
-
-// const receiveConfigs = function () {
-
     // get Cash in configs
-const cashInPromise = new Promise((resolve, reject) => {
+const cashInPromise = () => new Promise((resolve, reject) => {
     http.get(cashInApiUrl, (resp) => {
         let data = '';
 
         resp.on('data', (chunk) => {
             data += chunk;
         });
-        resolve(() => {
             resp.on('end', function dataReceived() {
-                
                 cashInConfig = JSON.parse(data);
+                configurations.cashInConfig.write = cashInConfig;
+                resolve(cashInConfig);
             });
-        });
-
-        
-
     }).on("error", (err) => {
         console.log("Error: " + err.message);
+        reject(console.log('Error getting cash in configs'));
     });
     
-    reject(console.log('cash in error'));
 });
-const cashOutLegalPromise = new Promise((resolve, reject) => {
+
+
+
+
+
+const cashOutLegalPromise = () => new Promise((resolve, reject) => {
     // get cash out legal configs
     http.get(cashOutJuridicalApiUrl, (resp) => {
         let data = '';
@@ -53,16 +46,21 @@ const cashOutLegalPromise = new Promise((resolve, reject) => {
 
         resp.on('end', () => {
             cashOutJuridicalConfig = JSON.parse(data);
+            configurations.cashOutJuridicalConfig.write = cashOutJuridicalConfig;
+            resolve(cashOutJuridicalConfig);
         });
 
     }).on("error", (err) => {
         console.log("Error: " + err.message);
+        reject(console.log('Error getting cash out legal configs'))
     });
-    resolve(cashOutJuridicalConfig);
-    reject(console.log('cash out legal promise error'));
 });
 
-const cashOutNaturalPromise = new Promise((resolve, reject) => {
+
+
+
+
+const cashOutNaturalPromise = () => new Promise((resolve, reject) => {
     // get cash out natural configs
     http.get(cashOutNaturalApiUrl, (resp) => {
         let data = '';
@@ -73,33 +71,24 @@ const cashOutNaturalPromise = new Promise((resolve, reject) => {
 
         resp.on('end', () => {
             cashOutNaturalConfig = JSON.parse(data);
+            configurations.cashOutNaturalConfig.write = cashOutNaturalConfig;
+            resolve(cashOutNaturalConfig);
         });
 
     }).on("error", (err) => {
         console.log("Error: " + err.message);
     });
-    resolve(cashOutNaturalConfig);
-    reject(console.log('cash out natural promise error'));
 });
 
-// receiveConfigs();
+
 const input = (path) => {
     const json = JSON.parse(fs.readFileSync(path, { encoding: 'utf8' }));
+    // console.log(json);
     return json;
 }
 
-// setInterval(() => {
-//     console.log(cashInConfig);
-//     console.log(cashOutJuridicalConfig);
-//     console.log(cashOutNaturalConfig);
-// },500);
 
-
-// exports.urlArgument = urlArgument;
 exports.input = input;
-exports.cashInConfig = cashInConfig;
-exports.cashOutJuridicalConfig = cashOutJuridicalConfig;
-exports.cashOutNaturalConfig = cashOutNaturalConfig;
 exports.cashInPromise = cashInPromise;
 exports.cashOutLegalPromise = cashOutLegalPromise;
 exports.cashOutNaturalPromise = cashOutNaturalPromise;
