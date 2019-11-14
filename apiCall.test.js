@@ -1,13 +1,38 @@
 const apiCall = require('./apiCall');
+const fs = require('fs');
+const http = require('http');
 
-test.skip('can find input file', () => {
-    // console.log(apiCall.input());
-    expect(apiCall.input('input.json').length).toBeGreaterThan(0);
-    
+jest.mock('fs');
+jest.mock('http');
+jest.mock('./configurations.js', () => {
+    const testConfigs = {
+        cashInConfig: {
+            data: undefined,
+            set write(information) {
+                this.data = information;
+            },
+        }
+    }
+    return testConfigs;
 });
 
-test.skip('does not find non-existant file', () => {
-    expect(() => {
-        apiCall.input('john.json')
-    }).toThrow();
+
+test('processes given json file', () => {
+    fs.readFileSync.mockReturnValue('{"foo": "bar"}');
+
+    const mock = jest.fn();
+    apiCall.input(mock);
+    expect(fs.readFileSync).toHaveBeenCalled();
+});
+
+test.skip('fetches json from API', () => {
+    http.get.mockReturnValue('test');
+
+    const mock = jest.fn();
+    // apiCall.cashInPromise(mock);
+    // http.get(mock);
+
+    return apiCall.cashInPromise(mock).then(() => {
+        expect(http.get).toHaveBeenCalled();
+    })
 });

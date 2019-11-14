@@ -11,7 +11,7 @@ const cashOutJuridicalApiUrl = 'http://private-38e18c-uzduotis.apiary-mock.com/c
 const cashOutNaturalApiUrl = 'http://private-38e18c-uzduotis.apiary-mock.com/config/cash-out/natural';
 
 
-    // get Cash in configs
+// get Cash in configs
 const cashInPromise = () => new Promise((resolve, reject) => {
     http.get(cashInApiUrl, (resp) => {
         let data = '';
@@ -19,16 +19,16 @@ const cashInPromise = () => new Promise((resolve, reject) => {
         resp.on('data', (chunk) => {
             data += chunk;
         });
-            resp.on('end', function dataReceived() {
-                cashInConfig = JSON.parse(data);
-                configurations.cashInConfig.write = cashInConfig;
-                resolve(cashInConfig);
-            });
+        resp.on('end', function dataReceived() {
+            cashInConfig = JSON.parse(data);
+            configurations.cashInConfig.write = cashInConfig;
+            resolve(cashInConfig);
+        });
     }).on("error", (err) => {
         console.log("Error: " + err.message);
         reject(console.log('Error getting cash in configs'));
     });
-    
+
 });
 
 
@@ -83,7 +83,6 @@ const cashOutNaturalPromise = () => new Promise((resolve, reject) => {
 
 const input = (path) => {
     const json = JSON.parse(fs.readFileSync(path, { encoding: 'utf8' }));
-    // console.log(json);
     return json;
 }
 

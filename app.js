@@ -1,6 +1,5 @@
 const apiCall = require('./apiCall');
 const calcCommission = require('./calcCommission');
-const configurations = require('./configurations');
 
 const urlArgument = process.argv[2];
 
@@ -13,7 +12,8 @@ const waitForConfigs = async function (){
     apiCall.input(urlArgument).forEach(calcCommission.calculate);
 }
 
+
 waitForConfigs();
 
-
+exports.waitForConfigs = waitForConfigs;
 

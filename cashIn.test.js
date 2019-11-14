@@ -1,28 +1,45 @@
 const cashIn = require('./cashIn');
 
-// visus kitus modulius ir fukcijas reik mockint;
-
-const inputOperation1 = {
-    operation: {
-        amount: 200.00,
-        currency: 'EUR',
+jest.mock('./configurations.js', () => {
+    const testConfigs = {
+        cashInConfig: {
+            data: {
+                percents: 0.03,
+                max: {
+                    amount: 5,
+                    currency: "EUR",
+                },
+            },
+            get read() {
+                return this.data;
+            },
+        }
     }
-}
+    return testConfigs;
+});
 
-const inputOperation2 = {
-    user_id: 3,
-    operation: {
-        amount: 200.00,
-        currency: "LT",
-    }
-}
 
 test('Calculates cash in fee', () => {
-    expect(cashIn.calculate(inputOperation1)).toBe('0.06');
+    const inputOperation = {
+        operation: {
+            amount: 200.00,
+            currency: 'EUR',
+        }
+    }
+
+    expect(cashIn.calculate(inputOperation)).toBe('0.06');
 });
 
 test('Throws error because of bad currency', () => {
+    const inputOperation = {
+        user_id: 3,
+        operation: {
+            amount: 200.00,
+            currency: "LT",
+        }
+    }
+
     expect(() => {
-        cashIn.calculate(inputOperation2);
+        cashIn.calculate(inputOperation);
     }).toThrow();
 });

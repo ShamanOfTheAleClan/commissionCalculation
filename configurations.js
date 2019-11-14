@@ -2,7 +2,7 @@ let cashInConfig = {
     data: undefined,
     set write(information) {
         this.data = information;
-        console.log(information);
+        // console.log(information);
     },
     get read() {
         return this.data;
@@ -10,9 +10,9 @@ let cashInConfig = {
 };
 let cashOutJuridicalConfig = {
     data: undefined,
-        set write(information) {
+    set write(information) {
         this.data = information;
-        console.log(information);
+        // console.log(information);
     },
     get read() {
         return this.data;
@@ -22,7 +22,7 @@ let cashOutNaturalConfig = {
         data: undefined,
         set write(information) {
         this.data = information;
-        console.log(information);
+        // console.log(information);
     },
     get read() {
         return this.data;

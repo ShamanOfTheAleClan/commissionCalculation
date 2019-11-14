@@ -1,22 +1,41 @@
 const overdraftCheck = require('./overdraftCheck');
 
-const configs = {
-    percents: 0.3,
-    week_limit: {
-        amount: 1000,
-        currency: 'EUR',
+jest.mock('./configurations.js', () => {
+    const testConfigs = {
+        cashOutNaturalConfig: {
+            data: {
+                percents: 0.3,
+                week_limit: {
+                    amount: 1000,
+                    currency: "EUR",
+                },
+            },
+            get read() {
+                return this.data;
+            },
+        }
     }
-}
-const inputOperation1 = { 
-    date: '2016-01-06',
-    user_id: 1,
-    user_type: 'natural',
-    type: 'cash_out',
-    operation: { 
-        amount: 30000,
-        currency: 'EUR',
-    },
-}
+    return testConfigs;
+});
 
 
-test();
+test('returns calculated fee', () => {
+    let user = {
+        amount: 0,
+        id: 1,
+    };
+    expect(overdraftCheck.check(user, 30000)).toBe('87.00');
+});
+
+test('returns 0 when limit is not reached', () => {
+    let user = {
+        amount: 0,
+        id: 1,
+    };
+    expect(overdraftCheck.check(user, 30)).toBe('0.00');
+});
+
+
+
+
+
