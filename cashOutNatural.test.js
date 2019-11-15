@@ -32,9 +32,7 @@ jest.mock('./configurations.js', () => {
 });
 
 
-test('Calculates cash out fee', () => {
-    // const mock = jest.fn();
-    // cashOutNatural.calculate(mock);
+test.skip('Calculates cash out fee', () => {
     const inputOperation = {
         date: "2016-01-06",
         user_id: 1,
